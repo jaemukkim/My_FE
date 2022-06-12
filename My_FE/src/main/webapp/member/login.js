@@ -5,9 +5,10 @@ $(document).ready(function(){
 	$("#register").click(function(){//[회원가입]버튼 클릭
 		//회원가입폼 registerForm.jsp 페이지를 
 		//id 속성값이 main_auth인 영역에 로드
-		$("#main_auth").load("registerForm.jsp");
+		$("#main_auth").load("join.jsp");
 	});
-	
+
+
 	//[로그인]버튼을 클릭하면 자동실행	
 	//입력한 아이디와 비밀번호를 갖고 loginPro.jsp 페이지 실행
 	$("#login").click(function(){
@@ -15,7 +16,7 @@ $(document).ready(function(){
 		if(status){
 		  //입력된 사용자의 아이디와 비밀번호를 얻어냄
 		  var query = {id : $("#id").val(), 
-				       passwd:$("#passwd").val()};
+				       password:$("#password").val()};
 		  
 		  $.ajax({
 		     type: "POST",
@@ -23,15 +24,15 @@ $(document).ready(function(){
 		     data: query,
 		     success: function(data){
 		    	 if(data == 1)//로그인 성공
-		    		 $("#main_auth").load("loginForm.jsp");	
+		    		 $("#main_auth").load("main.jsp");	
 		    	 else if(data == 0){//비밀번호 틀림
 		    	  	 alert("비밀번호가 맞지 않습니다.");
-		    	  	 $("#passwd").val("");
-		    	  	 $("#passwd").focus();
+		    	  	 $("#password").val("");
+		    	  	 $("#password").focus();
 		    	 }else if(data == -1){//아이디 틀림
 		    		 alert("아이디가 맞지 않습니다.");
 		    		 $("#id").val("");
-		    		 $("#passwd").val("");
+		    		 $("#password").val("");
 		    	  	 $("#id").focus();
 		    	 }
 		     }
@@ -53,7 +54,7 @@ $(document).ready(function(){
 		   type: "POST",
 		   url: "logout.jsp",
 		   success: function(data){
-		      $("#main_auth").load("loginForm.jsp");
+		      $("#main_auth").load("main.jsp");
 		   }
 		});
 	});
@@ -70,9 +71,9 @@ function checkIt(){
 		return false;
 	}
 	
-	if(!$.trim($("#passwd").val())){
+	if(!$.trim($("#password").val())){
 		alert("비밀번호를 입력하세요.");
-		$("#passwd").focus();
+		$("#password").focus();
 		status = false;
 		return false;
 	}

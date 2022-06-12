@@ -11,8 +11,7 @@ public class MemberDAO extends DBConnPool{
 		}
 		
 
-		private MemberDAO () { super(); }; 
-		
+		private MemberDAO () { super(); }; 		
 		
 		public void insertMember (MemberDTO Member) {
 			
@@ -42,34 +41,27 @@ public class MemberDAO extends DBConnPool{
 				System.out.println("회원 정보 DB 입력시 예외 발생"); 
 			}finally {
 //				instance.close(); 
-			}
-				
-		}
-		
+			}				
+		}	
 		
 		public int userCheck(String id, String password) {
-			int x = -1; 
+			int x = -1; 			
 			
-			
-			try {
+			try {				
+				String orgPass = password;
 				
-				String orgPass = password;    //폼에서 넘어오는 패스워드 
-				
-				String sql = "select password from mymember where id = ? "; 
+				String sql = "select password from mymember where id = ? ";
 				psmt = con.prepareStatement(sql);
 				psmt.setString(1, id);   
 				rs = psmt.executeQuery(); 
 				
-				if (rs.next()) {    //아이디가 존재하면 
-					String dbpassword = rs.getString("password");     //DB에서 가져온 패스워드 . 
-					
+				if (rs.next()) {     
+					String dbpassword = rs.getString("password");
 					if (orgPass.equals(dbpassword)) {
-						x=1;  // 폼에서 넘겨온 패스워드와 DB에서 가져온 패스워드가 일치 할때 x: 1 
+						x= 1;  
 					}else {
-						x= 0;   // 패스워드가 일치하지 않을때 
-					}
-					
-					
+						x= 0;    
+					}					
 				}			
 				
 			}catch (Exception e) {
@@ -82,7 +74,7 @@ public class MemberDAO extends DBConnPool{
 			return x; 		
 		}
 		
-		//아이디 중복 체크 (confirmId.jsp) 
+		//아이디 중복 체크
 		public int confirmId (String id) {
 			int x = -1 ;   
 			
@@ -95,12 +87,10 @@ public class MemberDAO extends DBConnPool{
 				psmt.setString (1,id); 
 				rs = psmt.executeQuery();
 				
-				if ( rs.next()) {  // 아이디가 DB 에 존재하는 경우
-					
-					System.out.println(id + " 는 존재 하는 ID 입니다. ");
-					
+				if ( rs.next()) { 					
+					System.out.println(id + " 는 존재 하는 ID 입니다. ");					
 					 x= 1; 
-				} else {  //아이디가 DB에 존재하지 않는 경우
+				} else {  
 					System.out.println(id + " 는 DB에 존재하지 않는 ID 입니다. ");
 					 x= -1 ; 
 				}
@@ -115,12 +105,9 @@ public class MemberDAO extends DBConnPool{
 		
 		
 		public MemberDTO getMember (String id, String password) {
-			MemberDTO member = null ; 
-				
-			try {
-				
-				String orgPass = password; 
-				
+			MemberDTO member = null ; 				
+			try {				
+				String orgPass = password; 				
 				
 				String sql = "select * from mymember where id = ?"; 
 				psmt = con.prepareStatement(sql); 
@@ -142,25 +129,21 @@ public class MemberDAO extends DBConnPool{
 					} else { 
 					}
 					
-				}
-				
+				}			
 				
 			}catch (Exception e) {
 				e.printStackTrace();
 				System.out.println("회원 정보 읽어 오는 중 예외 발생");
-			}finally {
-				
+			}finally {				
 //				instance.close(); 
-			}
-		
+			}		
 			return member; 		
 		}
 		
 		
 		public int updateMember(MemberDTO member) {
 			int x = -1 ; 
-			
-			
+						
 			try {
 				String orgPass = member.getPassword(); 
 				

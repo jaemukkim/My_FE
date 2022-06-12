@@ -1,3 +1,3 @@
 <%
-  session.invalidate();//세션무효화
+  session.invalidate();//세션무효�
 %>

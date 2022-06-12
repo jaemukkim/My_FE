@@ -1,16 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import = "mymember.MemberDAO" %>
+<%@ page import = "mymember.MemberDAO"%>
 
-<% request.setCharacterEncoding("utf-8");%>
+<% request.setCharacterEncoding("UTF-8");%>
 
 <%
   //사용자가 입력한 아이디와 비밀번호
   String id = request.getParameter("id");
-  String passwd  = request.getParameter("password");
+  String password  = request.getParameter("password");
 
   MemberDAO manager = MemberDAO.getInstance();
-  int check= manager.userCheck(id,passwd);//사용자인증처리 메소드
+  int check= manager.userCheck(id, password); //사용자인증처리 메소드
 
   if(check==1)//사용자인증에 성공시 세션속성을 설정
 	session.setAttribute("id",id);
