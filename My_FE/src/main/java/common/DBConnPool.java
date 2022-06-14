@@ -17,14 +17,11 @@ public class DBConnPool {
 	public  PreparedStatement psmt;
 	public  ResultSet rs; 
 	
-	//기본 생성자 
 	public DBConnPool() {
 		
         try {
-            // JDBC 드라이버 로드
             Class.forName("oracle.jdbc.OracleDriver");
 
-            // DB에 연결
             String url = "jdbc:oracle:thin:@localhost:1521:xe";  
             String id = "hr2";
             String pwd = "1234"; 
@@ -38,13 +35,12 @@ public class DBConnPool {
 	}
 	
 	
-	//자원 연결 해제  (자원 반납) : close() 메소드 호출시 자원을 반납하도록 설정 
     public  void close() {
         try {            
             if (rs != null) rs.close();
             if (stmt != null) stmt.close();
             if (psmt != null) psmt.close();
-            if (con != null) con.close();  // 자동으로 커넥션 풀로 반납됨
+            if (con != null) con.close();
 
             System.out.println("DB 커넥션 풀 자원 반납");
         }

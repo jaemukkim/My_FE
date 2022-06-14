@@ -38,7 +38,7 @@ $(document).ready(function(){
 			success: function(data){
 				if(data == 1) {//정보수정 성공
 				  alert("회원정보가 수정되었습니다.");
-				  window.location.href = 'main0.jsp';
+				  window.location.href = 'mainM.jsp';
 				}
 		   }
 		});

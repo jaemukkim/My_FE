@@ -68,14 +68,17 @@
             </nav>
         </div>
         <div class="logotop"></div>  
+        
+    <header>
+        <h2>회원정보 수정</h2>
+    </header>
 
-<div id="status">
-     <ul>
-        <li><label for="password">비밀번호</label>
-            <input id="password" name="password" type="password" 
-              size="20" placeholder="6~16자 숫자/문자" maxlength="16">
-        <li class="label2">
-            <button id="modify">정보수정</button>
-            <button id="delete">탈퇴</button>
-     </ul>
-</div>
+        <div id="status" class="input-box" >
+            <input id="password" type="password" name="password" placeholder="">
+            <label for="password">비밀번호 확인</label>
+        </div>
+        <div id="status" class="login-box" >
+        <button id="modify">정보수정</button>
+        <button id="delete">탈퇴</button>
+        <button id="cancle">돌아가기</button>
+        </div>

@@ -1,13 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import = "mymember.MemberDTO" %>
+<%@ page import = "mymember.MemberDAO" %>
 
-    
-     <link rel="stylesheet" href="../css/style.css"/>  
- <link rel="stylesheet" href="../css/join.css"/>     
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<link rel="stylesheet" href="../css/style.css"/>
+<link rel="stylesheet" href="../css/join.css"/>
     <script src="../js/jquery-1.12.3.js"></script>    
     <script src="../js/jquery-1.11.0.min.js"></script>
 <script src="../js/script.js" defer type="text/javascript"></script>
-<script src="register.js"></script>
+<script src="modify.js"></script>
 
 <!DOCTYPE html>
 <html>
@@ -72,40 +74,44 @@
        
        
     <header>
-        <h2>회원가입</h2>
+        <h2>회원정보 수정</h2>
     </header>
-       
+
+<% request.setCharacterEncoding("utf-8");%>
+
+<% 
+  String id = (String)session.getAttribute("id");
+  String password = request.getParameter("password");
+
+  MemberDAO manager = MemberDAO.getInstance();
+  MemberDTO m = manager.getMember(id,password); 
+    
+  try{
+%>
    			<div class="input-box" id="regForm">
-              <input id="id" type="text" name="id" >
-              <label for="id">아이디</label>
-              <button id="checkId">ID중복확인</button>
+              <input id="id" type="text" name="id" value=<%=id%> readonly disabled>
+              <label for="id">아이디(*변경불가*)</label>
             </div>
             <div class="input-box">
               <input id="password" type="password" name="password" >
               <label for="password">비밀번호</label>
             </div>
             <div class="input-box">
-                <input id="repass" name="repass" type="password">
-                <label for="repass">비밀번호 재입력</label>
+                <input id="name" name="name" type="text" value="<%=m.getName()%>">
+                <label for="name">이름</label>
             </div>
             <div class="input-box">
-                <input id="name" name="name" type="text">
-                <label for="name">이름</label>                
-            </div>
-            <div class="input-box">
-                <input id="address" name="address" type="text">
+                <input id="address" name="address" type="text" value="<%=m.getAddress()%>">
                 <label for="address">주소</label>
             </div>
             <div class="input-box">
-                <input id="phone" name="phone" type="tel">
+                <input id="phone" name="phone" type="tel" value="<%=m.getPhone()%>">
                 <label for="phone">전화번호</label>
             </div>
             <div class="label2">
-            <button id="process" onclick="location.href='main0.jsp'">가입하기</button>
-                <button id="cancle" onclick="location.href='main0.jsp'" >취소</button>
-            </div>
+             <button id="modifyProcess">수정</button>
+          	 <button id="cancle">취소</button>
+          	</div>
+          
+<%}catch(Exception e){}%>
 
-
-
-</body>
-</html>

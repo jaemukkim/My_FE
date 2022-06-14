@@ -6,6 +6,7 @@
 <script src="../js/script.js" defer type="text/javascript"></script>
 <script src="login.js"></script> 
 <script src="modify.js"></script> 
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -65,32 +66,38 @@
                 </ul>
             </nav>
         </div>
-        <div class="logotop"></div>  
+        <div class="logotop"></div>
         
-            <div class="loginbox1">  
-            <a href="main0.jsp"class="login" data-text="로그인">로그인</a>                                       
-            </div>
-            <div class="loginbox2">
-            <a href="join.jsp" class="join"data-text="회원가입">회원가입</a>
-            </div>
+                 
+            
+
         
 <%
 String id ="";
 try{
-	id = (String)session.getAttribute("id");
-%>
+	id = (String)session.getAttribute("id");%>
+
 
 <%if(id == null || id.equals("")){ //인증되지 않은 사용자 영역%>
-	
+	        <div class="loginbox1">  
+            <a href="main0.jsp"class="login" data-text="로그인">로그인</a>                                       
+            </div>
+            <div class="loginbox2">
+            <a href="join.jsp" class="join"data-text="회원가입">회원가입</a>
+            </div>            
 	   
     <%}else{//인증된 사용자 영역%>
   <div id="status" class="loginOn">
      <ul>
         <li><b><%=id %></b>님 환영합니다
-        <li class="label2"><button id="logout">로그아웃</button>
+        <li class="label2">
            <button id="update">회원 정보</button>         
      </ul>
-  </div>
+  	</div> 
+  	        <div class="loginbox3">  
+            <a href ="logout.jsp" id="logout" class="logout" data-text="로그아웃" >로그아웃</a>                                       
+            </div>
+      
 <%}}catch(Exception e){e.printStackTrace();}%>
 
 

@@ -183,6 +183,42 @@ public class MemberDAO extends DBConnPool{
 						
 			return x; 				 
 		}
+		
+		public int deleteMember(String id, String password) {
+			int x = -1; 
+						
+			try {
+				
+				String orgPass = password; 
+				
+				String sql = "select password from mymember where id = ?"; 
+				psmt = con.prepareStatement(sql); 
+				psmt.setString(1, id);
+				rs = psmt.executeQuery(); 
+				
+				if (rs.next()) {  
+					String dbpassword = rs.getString("password"); 
+
+					if (orgPass.equals(dbpassword)) {
+					sql = "delete mymember where id = ?"; 
+						
+						psmt = con.prepareStatement(sql); 
+						psmt.setString(1, id);
+						psmt.executeUpdate(); 
+						x = 1;     								
+					}		
+				}
+						
+			}catch (Exception e) {
+				e.printStackTrace();
+				System.out.println("회원 탈퇴시 예외가 발생 했습니다");
+			} finally {
+//				instance.close();
+			}
+			
+			return x; 			
+		}
+		
 
 		
 }
