@@ -1,4 +1,4 @@
 <%
-  session.invalidate();//세션무효�
+  session.invalidate();
   response.sendRedirect("main.jsp");
 %>

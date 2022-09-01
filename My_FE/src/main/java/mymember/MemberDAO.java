@@ -179,8 +179,7 @@ public class MemberDAO extends DBConnPool{
 				System.out.println("회원 정보 수정시 예외 발생");
 			}finally {
 //				instance.close();
-			}
-						
+			}						
 			return x; 				 
 		}
 		

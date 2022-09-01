@@ -3,7 +3,6 @@
 <%@ page import = "mymember.MemberDAO" %>
 
 <% request.setCharacterEncoding("utf-8");%>
-<%-- 7~9라인: 수정된 정보를 가지고 데이터저장빈객체를 생성--%>
 <jsp:useBean id="member" class="mymember.MemberDTO">
     <jsp:setProperty name="member" property="*" />
 </jsp:useBean>
